@@ -8,9 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Fetch boost
       run: python3 build/fbcode_builder/getdeps.py fetch --no-tests boost
+    - name: Install Boot deps into env for building as test
+      run: sudo apt install libpython3-dev python3-dev
     - name: Fetch ninja
       run: python3 build/fbcode_builder/getdeps.py fetch --no-tests ninja
     - name: Fetch cmake
